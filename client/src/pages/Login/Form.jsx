@@ -9,14 +9,20 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 function loginFormControl() {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setIsLoggedIn } = useAuth();
 
   function handleSubmit() {
-    console.log("UserName: ", userName);
-    console.log("password: ", password);
+    if (userName === "admin" && password === "admin") {
+      setIsLoggedIn(true);
+      console.log("usuario atenticado");
+    } else {
+      setIsLoggedIn(false);
+    }
   }
 
   return { userName, setUsername, setPassword, handleSubmit };
@@ -27,13 +33,12 @@ const Form = () => {
   return (
     <Flex flexDirection="column" gap="20px" paddingTop="1.5rem">
       <FormControl>
-        <FormLabel id="userName" isRequired>
+        <FormLabel id="userName" >
           Name
         </FormLabel>
         <Input
           type="text"
           h="3.125rem"
-          placeholder="Enter your username"
           fontSize="0.875rem"
           value={userName}
           onChange={(event) => setUsername(event.target.value)}
@@ -41,7 +46,7 @@ const Form = () => {
         />
       </FormControl>
       <FormControl>
-        <FormLabel id="password" isRequired>
+        <FormLabel id="password" >
           Password
         </FormLabel>
         <Input

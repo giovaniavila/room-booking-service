@@ -17,7 +17,7 @@ import Form from "./Form";
 import imagemfilhadaputa from "../../assets/login.svg";
 import cabin from "../../assets/cabin.svg";
 
-const index = () => {
+const Login = () => {
   return (
     <Grid gridTemplateColumns="1.2fr 1fr" h="100vh">
       <Box>
@@ -33,10 +33,10 @@ const index = () => {
             Efficiently manage meeting rooms with ease.
           </Text>
         </Flex>
-        <Form />
+        <Form/>
       </Grid>
     </Grid>
   );
 };
 
-export default index;
+export default Login;

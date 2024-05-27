@@ -1,10 +1,15 @@
-import { useState } from "react";
-import { Button } from "@chakra-ui/react";
-import Login from "./pages/Login/index"
+import Login from "./pages/Login/index";
+import { ChakraProvider } from "@chakra-ui/react";
+import AppRoutes from "./routes/Routes";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
-      <Login/>
+    <ChakraProvider>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </ChakraProvider>
   );
 }
 
