@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 import Login from "../pages/Login/index";
 import Home from "../pages/home/index";
-import RoomRegister from "../pages/cadastro/RoomRegister";
-import Sidebar from "../components/Sidebar";
+import RoomRegister from "../pages/cadastro/index";
 import { useAuth } from "../context/AuthContext";
 
 const AppRoutes = () => {

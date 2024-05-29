@@ -3,6 +3,7 @@ import { Grid, Box, Text, Flex, Image } from "@chakra-ui/react";
 import { FiUser, FiHome } from "react-icons/fi";
 import cabin from "../assets/cabin.svg";
 import { Link } from "react-router-dom";
+import ThemeToggle from "./Toggle";
 
 const Sidebar = () => {
   return (
@@ -49,6 +50,9 @@ const Sidebar = () => {
             <Text fontSize="15px">Adicionar</Text>
           </Flex>
         </Link>
+        <Box>
+{/*           <ThemeToggle /> */}
+        </Box>
       </Flex>
     </Flex>
   );
