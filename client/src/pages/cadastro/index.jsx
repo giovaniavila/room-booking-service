@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "../../components/Sidebar";
 import { Grid, Box, Heading } from "@chakra-ui/react";
 import { Divider } from "@chakra-ui/react";
-import Form from "./Form";
+import Formulario from "./Form";
 
 const RoomRegister = () => {
   return (
@@ -13,7 +13,7 @@ const RoomRegister = () => {
           <Heading marginBottom="20px">Cadastro de Salas</Heading>
           <Divider borderWidth="1px" />
           <Box marginTop="20px">
-            <Form />
+            <Formulario />
           </Box>
         </Box>
       </Grid>
