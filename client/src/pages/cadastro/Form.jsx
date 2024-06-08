@@ -8,6 +8,9 @@ import {
   FormLabel,
   Grid,
 } from "@chakra-ui/react";
+import { useAuth } from "../../context/AuthContext";
+import { Navigate } from "react-router-dom";
+import Home from "../home";
 
 const initialState = {
   name: "",
@@ -24,6 +27,7 @@ const initialState = {
 
 function formController() {
   const [formState, setFormState] = useState(initialState);
+  const {isLoggedIn} = useAuth();
 
   const handleChange = (e) => {
     const newValue =

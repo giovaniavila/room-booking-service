@@ -57,12 +57,12 @@ const Home = () => {
         w="auto"
       >
         <SearchBar value={searchTerm} onChange={handleSearch} />
-        <Box padding="1rem" boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px">
+        <Box padding="1rem" boxShadow="rgba(149, 157, 165, 0.2) 0px 8px 24px" width="auto">
           <Heading as="h2" size="lg" mb={4}>
             Lista de Salas
           </Heading>
           <Divider mb={4} />
-          <Table variant="simple">
+          <Table variant="simple" size="sm">
             <Thead>
               <Tr>
                 <Th>Nome da Sala</Th>
