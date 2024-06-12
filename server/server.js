@@ -2,14 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const cors = require('cors');
-const fileUpload = require('express-fileupload');
-const path = require('path');
-const fs = require('fs');
 
 const app = express();
 const PORT = 3000;
-
-app.use(fileUpload());
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -40,35 +35,24 @@ app.post('/cadastro', (req, res) => {
     responsavel,
     motivo,
     informacaoGeral,
-    convidados
+    convidados,
+    foto 
   } = req.body;
 
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send('Nenhum arquivo foi enviado.');
-  }
+  let fotoValue = foto || null; 
 
-  const foto = req.files.foto;
-  const uploadPath = path.join(__dirname, 'uploads', foto.name);
+  const sql = `
+    INSERT INTO rooms (name, local, data, horaInicial, horaFinal, responsavel, motivo, informacaoGeral, convidados, foto)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
 
-  foto.mv(uploadPath, (err) => {
+  connection.query(sql, [name, local, data, horaInicial, horaFinal, responsavel, motivo, informacaoGeral, convidados, fotoValue], (err, results) => {
     if (err) {
-      return res.status(500).send(err);
+      console.error('Erro ao inserir evento:', err);
+      res.status(500).send('Erro ao inserir evento.');
+    } else {
+      res.status(201).send('Evento inserido com sucesso.');
     }
-
-    const fotoPath = `/uploads/${foto.name}`;
-    const sql = `
-      INSERT INTO rooms (name, foto, local, data, horaInicial, horaFinal, responsavel, motivo, informacaoGeral, convidados)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-
-    connection.query(sql, [name, fotoPath, local, data, horaInicial, horaFinal, responsavel, motivo, informacaoGeral, convidados], (err, results) => {
-      if (err) {
-        console.error('Erro ao inserir evento:', err);
-        res.status(500).send('Erro ao inserir evento.');
-      } else {
-        res.status(201).send('Evento inserido com sucesso.');
-      }
-    });
   });
 });
 
@@ -84,9 +68,6 @@ app.get('/salas', (req, res) => {
     }
   });
 });
-
-// Servir imagens estáticas
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}.`);

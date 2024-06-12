@@ -25,6 +25,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3000/salas");
+        console.log(response.data)
         setData(response.data);
         setFilteredData(response.data);
       } catch (error) {
