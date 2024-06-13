@@ -6,6 +6,7 @@ const cors = require('cors');
 const app = express();
 const PORT = 3000;
 
+// Conexão com o banco de dados
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -21,10 +22,22 @@ connection.connect((err) => {
   }
 });
 
+// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
 
+// Configuração do CORS
+app.use(cors({
+  origin: 'http://52.206.212.46:5173', // Substitua pelo IP público do seu frontend
+}));
+
+// Middleware de logging
+app.use((req, res, next) => {
+  console.log(`Requisição feita para: ${req.method} ${req.url}`);
+  next();
+});
+
+// Rota para cadastro
 app.post('/cadastro', (req, res) => {
   const {
     name,
@@ -56,6 +69,7 @@ app.post('/cadastro', (req, res) => {
   });
 });
 
+// Rota para obter salas
 app.get('/salas', (req, res) => {
   const sql = 'SELECT * FROM rooms';
 
@@ -69,6 +83,7 @@ app.get('/salas', (req, res) => {
   });
 });
 
+// Iniciar servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}.`);
 });
