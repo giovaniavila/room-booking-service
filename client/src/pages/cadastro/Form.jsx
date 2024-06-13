@@ -43,7 +43,7 @@ function formController() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/cadastro",
+        "http://52.206.212.46:3000/cadastro",
         formState
       );
       console.log("Evento inserido com sucesso:", response.data);

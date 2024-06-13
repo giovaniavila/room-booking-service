@@ -24,7 +24,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/salas");
+        const response = await axios.get("http://52.206.212.46:3000/salas");
         console.log(response.data)
         setData(response.data);
         setFilteredData(response.data);
