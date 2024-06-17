@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configuração do CORS
 app.use(cors({
-  origin: 'http://52.206.212.46:5173', // Substitua pelo IP público do seu frontend
+  origin: 'http://34.204.67.56:5173', // Substitua pelo IP público do seu frontend
 }));
 
 // Middleware de logging
