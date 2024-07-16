@@ -1,2 +1,2 @@
 # room-booking-service
-A platform tailored for reserving conference rooms seamlessly.
+application hosted on an Ubuntu VM in AWS.
